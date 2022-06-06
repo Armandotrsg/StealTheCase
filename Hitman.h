@@ -2,6 +2,7 @@
 #define HITMAN_H
 
 #include "Character.h"
+#include "Room.h"
 #include "Item.h"
 
 class Hitman: public Character{
@@ -10,7 +11,8 @@ class Hitman: public Character{
         vector<Item*> inventory; //Heredado a protagonista únicamente
         bool detected;
         bool backPack;
-    
+        Room* location;
+
     public:
         Hitman();
         Hitman(string,Room*,Clothes*); //Sin items al inicio

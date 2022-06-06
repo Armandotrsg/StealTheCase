@@ -10,17 +10,21 @@ class Hitman: public Character{
         vector<Item*> inventory; //Heredado a protagonista únicamente
         bool detected;
         bool backPack;
+        Room* location;
     
     public:
         Hitman();
-        Hitman(string,Room*,Clothes*); //Sin items al inicio
+        Hitman(string,Clothes*,Room*); //Sin items al inicio
         Item* getItem(int);
         Item* seekItem(string);
         void addItem(Item*);
         bool hasBackPack();
         bool move(string); //Devuelve si sí puede caminar y se mueve
-        void printAllItems();
+        void viewInventory();
         Item* dropItem(string);
+
+        Room* getLocation();
+        void setLocation(Room*);
 
 };
 

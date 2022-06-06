@@ -2,22 +2,23 @@
 #define ITEM_H
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
 class Item{
     private:
         string description;
-        string actionWord;
+        vector<string> actionWord; 
         int space;
 
     public:
         Item();
-        Item(string,int);
-        virtual string getDescription();
+        Item(string,int, vector<string>);
+        virtual string getDescription(); //Polimorfismo para clase derivada clothes
         void setDescription(string);
         int getSpace();
         void setSpace(int);
 };
-
+        
 #endif

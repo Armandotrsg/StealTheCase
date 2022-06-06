@@ -12,16 +12,13 @@ using namespace std;
 class Character{
     private:
         string name;
-        Room* location;
         Clothes* disguise;
         
     public:
         Character();
-        Character(string,Room*,Clothes*);
+        Character(string,Clothes*);
         string getName();
         void setName(string);
-        Room* getLocation();
-        void setLocation(Room*);
         Clothes* getDisguise() const;
         void setDisguise(Clothes*);
 

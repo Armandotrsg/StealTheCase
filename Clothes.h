@@ -11,11 +11,11 @@ class Clothes : public Item{
         string job;
     public:
         Clothes();
-        Clothes(string,int,string,string);
+        Clothes(string,int,vector<string>,string);
         string getJob() const;
         void setJob(string);
         string getDescription();
-        void setDescription(string);
+        
 
 };
 

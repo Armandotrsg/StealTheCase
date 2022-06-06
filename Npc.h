@@ -18,9 +18,9 @@ class Npc: public Character{
         bool getDistracted();
         bool getNeutralized();
 
-        Item* setDropItem();
-        bool setDistracted();
-        bool setNeutralized();
+        Item* setDropItem(Item*);
+        bool setDistracted(bool);
+        bool setNeutralized(bool);
 
 
 

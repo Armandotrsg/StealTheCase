@@ -20,7 +20,7 @@ class Character{
         string getName();
         void setName(string);
         Clothes* getDisguise() const;
-        void setDisguise(Clothes*);
+        
 
 };
 

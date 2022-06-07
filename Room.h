@@ -29,7 +29,9 @@ class Room{
         Character* getCharacter(Character*);
         Room* getExit(string);
 
+        Item* getItem(string);
         void addItem(Item*);
+        void takeItem(string);
         
 
 };

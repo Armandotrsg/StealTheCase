@@ -19,7 +19,7 @@ Hitman::Hitman(string name,Clothes* disguise,Room* location) : Character(name,di
 int Hitman::getItemIndex(Item* item){
     for (int i = 0; i < this->inventory.size(); i++){
         if (item == this->inventory[i]){
-            return this->inventory[i];
+            return i;
         }
     }
     return -1;

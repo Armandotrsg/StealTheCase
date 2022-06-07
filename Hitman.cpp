@@ -53,7 +53,7 @@ void Hitman::addItem(Item* newItem){
         if (newItem->getType() == "Mochila"){
             bool idk = hasBackPack();
         } else if (newItem->getType() == "Atuendo"){
-            //change clothes
+            setDisguise(newItem);
         }
     }
 }

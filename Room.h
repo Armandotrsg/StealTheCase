@@ -11,27 +11,28 @@ using namespace std;
 class Room{
     private:
         string description;
-        Clothes accessClothes;
+        vector<Clothes*> accessClothes;
         vector<Item*> items;
-        bool needsKey;
         vector<Character*> people;
-        Room* exits[4];
+        vector<Room*> exits;
 
     public:
         Room();
-        Room(string,Clothes*,Item*,Character*);
+        Room(string,vector<Clothes*>,vector<Item*>,vector<Character*>,vector<Room*>);
         string getDescription() const;
         void setDescription(string);
-        Clothes* getAccesClothes();
-        void setAccessClothes(Clothes*);
-        bool hasKey();
+        vector<Clothes*> getAccesClothes();
+        void setAccessClothes(vector<Clothes*>);
+        
         int getNumberOfCharacter();
         Character* getCharacter(Character*);
         Room* getExit(string);
+        void setExit(vector<Room*>);
 
         Item* getItem(string);
         void addItem(Item*);
-        void takeItem(string);
+        void setItem(vector<Item*>);
+        void setPeople(vector<Character*>);
         
 
 };

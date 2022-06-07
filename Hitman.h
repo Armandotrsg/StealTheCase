@@ -4,6 +4,7 @@
 #include "Character.h"
 #include "Room.h"
 #include "Item.h"
+#include <vector>
 
 class Hitman: public Character{
 

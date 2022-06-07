@@ -4,7 +4,7 @@ Hitman::Hitman(){
     this->detected = false;
     this->backPack = false;
     
-    this->inventory.push_back(nullptr);
+    this->inventory.push_back(new Item);
     this->location = nullptr;
 }
 
@@ -12,7 +12,7 @@ Hitman::Hitman(string name,Clothes* disguise,Room* location) : Character(name,di
     this->location = location;
     this->backPack = false;
     this->detected = false;
-    Item* vacio;
+    Item* vacio; //Borrar
     this->inventory.push_back(vacio);
 }
 
@@ -88,7 +88,7 @@ bool Hitman::move(string dir){
 void Hitman::viewInventory(){
     cout << "\t\tINVENTARIO\n";
     for (auto &item : this->inventory){
-        if (item->getType() != "Mochila" || item->getType() != "Atuendo"){
+        if (item->getSpace() != 0){
             cout << "Item de tipo " << item->getType() << "\tcon espacio de " << item->getSpace() << endl;
             cout << item->getDescription() << endl;
             cout << "-----------------------------------" << endl;
@@ -103,7 +103,8 @@ void Hitman::dropItem(string item){
     string message;
     if (dropObject != nullptr){
         this->location->addItem(dropObject);
-        this->inventory.erase(getItemIndex(dropObject));
+        int index = getItemIndex(dropObject);
+        this->inventory[index] = new Item;
         message = "Item eliminado exitosamente";
     } else{
         message = "El item ingresado no coincide con ningún item de tu inventario";

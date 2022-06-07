@@ -1,8 +1,7 @@
 #ifndef ROOM_H
 #define ROOM_H
 
-#include <iostream>
-#include <vector>
+
 #include "Clothes.h"
 #include "Item.h"
 #include "Character.h"
@@ -28,7 +27,9 @@ class Room{
         bool hasKey();
         int getNumberOfCharacter();
         Character* getCharacter(Character*);
-        
+        Room* getExit(string);
+
+        void addItem(Item*);
         
 
 };

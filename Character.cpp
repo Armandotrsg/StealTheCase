@@ -20,3 +20,7 @@ void Character::setName(string name){
 Clothes* Character::getDisguise() const{
     return this->disguise;
 }
+
+void Character::setDisguise(Clothes* newClothes){
+    this->disguise = newClothes;
+}

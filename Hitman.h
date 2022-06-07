@@ -16,17 +16,20 @@ class Hitman: public Character{
     public:
         Hitman();
         Hitman(string,Clothes*,Room*); //Sin items al inicio
-        Item* getItem(int);
+        int getItemIndex(Item*);
         Item* seekItem(string);
         void addItem(Item*);
         bool hasBackPack();
         bool move(string); //Devuelve si sí puede caminar y se mueve
         void viewInventory();
-        Item* dropItem(string);
+        void dropItem(string);
 
         Room* getLocation();
         void setLocation(Room*);
+        
+        int getInventorySpaceUsed(); //Suma el peso de todos los items
 
+        void changeClothes(Clothes*);
 };
 
 #endif

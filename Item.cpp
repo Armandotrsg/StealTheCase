@@ -3,12 +3,13 @@
 Item::Item(){
     this->description = "";
     this->space = 0;
-    
+    this->type = "";
 }
 
-Item::Item(string description,int space, vector<string> _actionWord){
+Item::Item(string type, string description,int space, vector<string> _actionWord){
     this->description = description;
     this->space = space;
+    this->type = type;
     for (auto &var:_actionWord){
         this->actionWord.push_back(var);
     }
@@ -30,6 +31,13 @@ void Item::setSpace(int space){
     this->space = space;
 }
 
+string Item::getType(){
+    return this->type;
+}
+
+void Item::setType(string type){
+    this->type = type;
+}
 
 
 

@@ -4,8 +4,9 @@ Clothes::Clothes(){
     this->job = "";
 }
 
-Clothes::Clothes(string description,int space,vector<string> _actionWord,string job) : Item(description,space,_actionWord){
+Clothes::Clothes(string type,string description,int space,vector<string> _actionWord,string job) : Item(type,description,space,_actionWord){
     this->job = job;
+    
 }
 
 string Clothes::getJob() const{

@@ -64,7 +64,7 @@ void Hitman::addItem(Item* newItem){
 
 bool Hitman::hasBackPack(){
     for (auto &item : this->inventory){
-        if (item->getDescription() == "Mochila"){
+        if (item->getType() == "Mochila"){
             this->backPack = true;
         }
     }

@@ -27,7 +27,7 @@ int Hitman::getItemIndex(Item* item){
 
 Item* Hitman::seekItem(string itemName){
     for (auto &item : this->inventory){
-        if (item->getDescription() == itemName){
+        if (item->getType() == itemName){
             return item;
         }
     }
@@ -53,7 +53,11 @@ void Hitman::addItem(Item* newItem){
         if (newItem->getType() == "Mochila"){
             bool idk = hasBackPack();
         } else if (newItem->getType() == "Atuendo"){
-            setDisguise(newItem);
+            if (Clothes* newClothes = dynamic_cast<Clothes*>(newItem)){
+                setDisguise(newClothes);
+            }
+            dropItem(newItem->getType());
+            
         }
     }
 }

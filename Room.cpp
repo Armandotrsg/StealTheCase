@@ -53,7 +53,7 @@ void Room::setExit(vector<Room*>){
     }
 }
 
-Item* getItem(string itemName){
+Item* Room::getItem(string itemName){
     for (auto &item : this->items){
         if (item->getDescription() == itemName){
             return item;

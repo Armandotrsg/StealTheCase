@@ -6,13 +6,10 @@ Item::Item(){
     this->type = "";
 }
 
-Item::Item(string type, string description,int space, vector<string> _actionWord){
+Item::Item(string type, string description,int space){
     this->description = description;
     this->space = space;
     this->type = type;
-    for (auto &var:_actionWord){
-        this->actionWord.push_back(var);
-    }
 }
 
 string Item::getDescription(){

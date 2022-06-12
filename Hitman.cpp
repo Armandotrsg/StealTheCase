@@ -62,10 +62,11 @@ void Hitman::addItem(Item* newItem){
         if (newItem->getType() == "Mochila"){
             bool idk = hasBackPack();
         } else if (newItem->getType() == "Ropa"){
+            dropItem(newItem->getName());
             if (Clothes* newClothes = dynamic_cast<Clothes*>(newItem)){
                 setDisguise(newClothes);
             }
-            dropItem(newItem->getType());
+            
             
         }
     }
@@ -127,7 +128,7 @@ bool Hitman::move(string dir){
 void Hitman::viewInventory(){
     cout << "\t\tINVENTARIO\n";
     for (auto &item : this->inventory){
-        if (item->getSpace() != 0){
+        if (item->getType() != "Mochila" || item->getType() != "Llave"){
             cout << item->getDescription() << endl;
             cout << "-----------------------------------" << endl;
         }
@@ -142,7 +143,7 @@ void Hitman::dropItem(string item){
     if (dropObject != nullptr){
         this->location->addItem(dropObject);
         int index = getItemIndex(dropObject);
-        this->inventory[index] = new Item;
+        this->inventory.erase(this->inventory.begin() + index);
         message = "Item eliminado exitosamente";
     } else{
         message = "El item ingresado no coincide con ningún item de tu inventario";

@@ -30,6 +30,7 @@ class Room{
         
         int getNumberOfCharacters();
         Npc* getNpc(string);
+        int getNpcIndex(Npc*);
         bool removeCharacter(string);
         vector<Npc*> getOtherCharactersInRoom(Npc*);
 

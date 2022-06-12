@@ -94,8 +94,7 @@ void Room::addItem(Item* newItem){
 void Room::removeItem(Item* dropped){
     for (int i = 0; i < this->items.size(); i++){
         if (this->items[i]->getName() == dropped->getName()){
-            Item* random;
-            this->items[i] = random;
+            this->items.erase(this->items.begin()+i);
         }
     }
 }
@@ -115,6 +114,17 @@ Npc* Room::getNpc(string name){
         }
     }
     return nullptr;
+}
+
+int Room::getNpcIndex(Npc* npc){
+    
+    for (int i = 0; i < this->people.size(); i++){
+        if(this->people[i] == npc){
+            return i;
+        }
+        
+    }
+    return -1;
 }
 
 int Room::getNumberOfCharacters(){
@@ -144,14 +154,16 @@ bool Room::removeCharacter(string neutralized){
             } else {
                 addItem(killed->getDropItem());
                 Clothes* nuevaRopa = killed->getDisguise();
-                addItem(nuevaRopa);
-                killed = new Npc;
+                addItem(nuevaRopa); //Checar si hay error porque el método pide un item, no ropa
+                int index = getNpcIndex(killed);
+                this->people.erase(this->people.begin()+index);
             }
         } else{
             addItem(killed->getDropItem());
             Clothes* nuevaRopa = killed->getDisguise();
             addItem(nuevaRopa);
-            killed = new Npc;
+            int index = getNpcIndex(killed);
+            this->people.erase(this->people.begin()+index);
         }
         
     } else {

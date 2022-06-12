@@ -13,7 +13,8 @@ void mensajeIntro(){
     archivoIntro.close();
 }
 
-void setup(){
+int main(){
+    //mensajeIntro();
     //Creamos e inicializamos los vectores de tipo Item de cada cuarto que se va a crear
     vector <Item*>  itemsParking;
     vector <Item*>  itemsBaldio;
@@ -23,7 +24,7 @@ void setup(){
     vector <Item*>  itemsComedor;
     vector <Item*>  itemsSala;
     vector <Item*>  itemsBanio;
-
+    
     itemsParking.push_back(new Item("Distractor", "Moneda","Pequeño objeto de níquel, podría hacer ruido...", 1));
     itemsParking.push_back(new Item("Arma", "Navaja", "Un poco oxidada, pero aún tiene filo...", 2));
     itemsParking.push_back(new Item("Arma", "Cloroformo","Ayuda a neutralizar enemigos.", 1));
@@ -102,7 +103,7 @@ void setup(){
     npcBanio.push_back(new Npc("Ejecutivo",ejecutivo,pluma));
 
     vector<Npc*> npcBoveda;
-    npcBoveda.push_back(nullptr);
+    npcBoveda.push_back(new Npc);
 
     vector<Clothes*> accessParking;
     Clothes* hitmanClothes = new Clothes("Ropa","Ropa normal","Ropa común, cuidado que puede llamar la atención",0,"Hitman");
@@ -184,10 +185,8 @@ void setup(){
     vector<Room*> exitsBoveda;
     exitsBoveda.push_back(sala);
     banio->setExits(exitsBoveda);
-}
 
-int main(){
-    mensajeIntro();
+    
 
     return 0;
 }

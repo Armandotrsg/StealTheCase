@@ -9,7 +9,7 @@ FERNANDO GÓMEZ MARTÍNEZ
 Eres un agente de una organización secreta, el cual fue enviado a una lujosa reunión de empresarios en una mansión. Fuiste enviado con el propósito de robar un maletín con información acerca de la fórmula química de un arma biológica que piensa utilizar una corporación malvada. Tu misión es infiltrarte dentro de la fiesta, robar el maletín, y huir sin ser detectado, cueste lo que cueste…
 
 ## ¿Cómo lo hago?
-Dentro de la mansión encontrarás diferentes escenarios a través de los cuales podrás desplazar a tu agente. En estos escenarios encontrarás objetos con diferentes funcionalidades: como armas (las cuales sirven para neutralizar enemigos), distractores (sirven para distraer enemigos), y atuendos.
+Dentro de la mansión encontrarás diferentes escenarios a través de los cuales podrás desplazar a tu agente. En estos escenarios encontrarás objetos con diferentes funcionalidades: como armas (las cuales sirven para neutralizar enemigos), distractores (sirven para distraer enemigos), atuendos, herramientas y llaves..
 
 Estos últimos son muy importantes ya que existen ciertas localizaciones en las que solamente podrán entrar cierto tipo de personas (Chefs, personal de seguridad, policías, etc.) por lo que deberás conseguir los atuendos necesarios para poder infiltrarte a este tipo de zonas. 
 

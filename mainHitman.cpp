@@ -1,9 +1,16 @@
 #include "Hitman.h"
 #include "Clothes.h"
 #include "Room.h"
+#include <fstream>
 
 void mensajeIntro(){
-    cout << "Bienvenido a Hitman";
+    ifstream archivoIntro;
+    archivoIntro.open("mensajeIntro.txt");
+    string mensaje;
+    while (getline(archivoIntro,mensaje)){
+        cout << mensaje << endl;
+    }
+    archivoIntro.close();
 }
 
 void setup(){
@@ -180,7 +187,7 @@ void setup(){
 }
 
 int main(){
-    
+    mensajeIntro();
 
     return 0;
 }

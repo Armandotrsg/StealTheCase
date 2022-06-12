@@ -64,8 +64,12 @@ int main(){
     vector<Npc*> npcBanio;
 
     Item* noItem1;
+
+    //All right
+
     Clothes* valet = new Clothes("Ropa","Disfraz de valet","Puedes entrar a la sala con esto",0,"Valet");
     npcParking.push_back(new Npc("Valet",valet,noItem1));
+
 
     Clothes* cargador1 = new Clothes("Ropa","Disfraz de repartidor","Puedes entrar al almacén con esto",0,"Repartidor");
     Clothes* cargador2 = new Clothes("Ropa","Disfraz de repartidor","Puedes entrar al almacén con esto",0,"Repartidor");
@@ -102,6 +106,8 @@ int main(){
     Item* pluma = new Item("Inutil","Pluma","Que bueno que tengo una, ya podré hacer mi lista de compras",1);
     npcBanio.push_back(new Npc("Ejecutivo",ejecutivo,pluma));
 
+    //All right 2
+
     vector<Npc*> npcBoveda;
     npcBoveda.push_back(new Npc);
 
@@ -137,6 +143,9 @@ int main(){
     vector<Clothes*> accessBoveda;
     accessBoveda.push_back(ejecutivo);
 
+    //All right
+
+    //Check what happens with Rooms
     Room* estacionamiento = new Room("Estacionamiento","Lugar donde puedes aparcar tu coche y el del valet te lo cuidará",accessParking,itemsParking,npcParking,false,false);
     Room* baldio = new Room("Terreno Baldío","Parece que está muy abandonado por aquí, al parecer aquí es donde estacionan el camion de repartidores",accessBaldio,itemsBaldio,npcBaldio,false,false);
     Room* almacen = new Room("Almacén","Aquí guardan toda la comida para la semana",accessAlmacen,itemsAlmacen,npcAlmacen,false,true);
@@ -145,6 +154,7 @@ int main(){
     Room* sala = new Room("Sala","Sala de estar de la casa, donde puedes esperar para entrar al comedor",accessSala,itemsSala,npcSala,false,false);
     Room* banio = new Room("Baño","Wow, todo está hecho de porcelana y mármol, ¡Bastante elegante!",accessBanio,itemsBanio,npcBanio,false,false);
     Room* boveda = new Room("Bóveda","Mira, aquí guardan los papeles...",accessBoveda,itemsBoveda,npcBoveda,true,false);
+
 
     vector<Room*> exitsParking;
     exitsParking.push_back(baldio);
@@ -187,6 +197,7 @@ int main(){
     banio->setExits(exitsBoveda);
 
     
+
 
     return 0;
 }

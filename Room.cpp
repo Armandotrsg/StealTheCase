@@ -12,12 +12,11 @@ Room::Room(){
     this->tool = false;
 }
 
-Room::Room(string name,string description,vector<Clothes*> accessClothes,vector<Item*> items, vector<Npc*> people,vector<Room*> exits,bool key,bool tool){
+Room::Room(string name,string description,vector<Clothes*> accessClothes,vector<Item*> items, vector<Npc*> people,bool key,bool tool){
     setDescription(description);
     setAccessClothes(accessClothes);
     setItem(items);
     setPeople(people);
-    setExit(exits);
     this->name = name;
     this->key = key;
     this->tool = tool;
@@ -71,7 +70,7 @@ Room* Room::getExit(string roomName){
     return nullptr;
 }
 
-void Room::setExit(vector<Room*>){
+void Room::setExits(vector<Room*> exits){
     for (int i = 0; i < 4; i++){
         this->exits.push_back(exits[i]);
     }

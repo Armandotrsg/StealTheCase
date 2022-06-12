@@ -22,7 +22,7 @@ class Room{
 
     public:
         Room();
-        Room(string,string,vector<Clothes*>,vector<Item*>,vector<Npc*>,vector<Room*>,bool,bool);
+        Room(string,string,vector<Clothes*>,vector<Item*>,vector<Npc*>,bool,bool);
         string getDescription() const;
         void setDescription(string);
         vector<Clothes*> getAccesClothes();
@@ -35,7 +35,7 @@ class Room{
         vector<Npc*> getOtherCharactersInRoom(Npc*);
 
         Room* getExit(string);
-        void setExit(vector<Room*>);
+        void setExits(vector<Room*>);
 
         Item* getItem(string);
         void addItem(Item*);

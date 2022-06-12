@@ -19,6 +19,8 @@ class Hitman: public Character{
         Hitman(string,Clothes*,Room*); //Sin items al inicio
         int getItemIndex(Item*);
         Item* seekItem(string);
+        Item* getItemType(string);
+
         void addItem(Item*);
         bool hasBackPack();
         bool move(string); //Devuelve si sí puede caminar y se mueve

@@ -27,11 +27,20 @@ int Hitman::getItemIndex(Item* item){
 
 Item* Hitman::seekItem(string itemName){
     for (auto &item : this->inventory){
-        if (item->getType() == itemName){
+        if (item->getName() == itemName){
             return item;
         }
     }
     cout << "No tienes ningún item que tenga este nombre" << endl;
+    return nullptr;
+}
+
+Item* Hitman::getItemType(string itemType){
+    for (auto &item : this->inventory){
+        if (item->getType() == itemType){
+            return item;
+        }
+    }
     return nullptr;
 }
 
@@ -80,25 +89,50 @@ void Hitman::setLocation(Room* newRoom){
 }
 
 bool Hitman::move(string dir){
+    bool returnType = false;
     Room* voyA=getLocation()->getExit(dir);
     if (voyA!=nullptr){
+        if (voyA->needsKey()){
+            Item* hasKey = seekItem("Llave");
+            if (hasKey != nullptr){
+                setLocation(voyA);
+                returnType = true;
+            } else {
+                cout << "Este cuarto necesita una llave...\n";
+            }
+        } else if (voyA->needsTool()){
+            Item* hasTool = getItemType("Herramienta");
+            if (hasTool != nullptr){
+                setLocation(voyA);
+                returnType = true;
+            } else{
+                cout << "Este cuarto parece estar trabado...";
+            }
+        }
         setLocation(voyA);
-        return true;
+        returnType = true;
+    } else {
+        cout << "Este cuarto no es una salida para " << getLocation()->getName() << endl;
+    }
+
+    for (auto& ropa : getLocation()->getAccesClothes()){
+        if (getDisguise()->getJob() != ropa->getJob()){
+            this->detected = true;
+        }
     }
     
-    return false;
+    return returnType;
 }
 
 void Hitman::viewInventory(){
     cout << "\t\tINVENTARIO\n";
     for (auto &item : this->inventory){
         if (item->getSpace() != 0){
-            cout << "Item de tipo " << item->getType() << "\tcon espacio de " << item->getSpace() << endl;
             cout << item->getDescription() << endl;
             cout << "-----------------------------------" << endl;
         }
     }
-    cout << "Ingresa la palabra USAR o DEJAR seguido del nombre del objeto de acuerdo a lo que quieras hacer";
+    cout << "Ingresa la palabra USAR o DEJAR seguido del nombre del objeto de acuerdo a lo que quieras hacer" << endl;
 
 }
 
@@ -120,3 +154,4 @@ void Hitman::changeClothes(Clothes* newClothes){
     this->setDisguise(newClothes);
     getLocation()->addItem(newClothes);
 }
+

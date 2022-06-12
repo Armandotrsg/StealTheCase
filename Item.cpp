@@ -4,16 +4,18 @@ Item::Item(){
     this->description = "";
     this->space = 0;
     this->type = "";
+    this->name = "";
 }
 
-Item::Item(string type, string description,int space){
+Item::Item(string type, string name,string description,int space){
     this->description = description;
     this->space = space;
     this->type = type;
+    this->name = name;
 }
 
 string Item::getDescription(){
-    return this->description + "\nPeso: " + to_string(this->space);
+    return this-> name + ":\n" + this->description + "\nPeso: " + to_string(this->space);
 }
 
 void Item::setDescription(string description){
@@ -34,6 +36,14 @@ string Item::getType(){
 
 void Item::setType(string type){
     this->type = type;
+}
+
+string Item::getName(){
+    return this->name;
+}
+
+void Item::setName(string name){
+    this->name = name;
 }
 
 

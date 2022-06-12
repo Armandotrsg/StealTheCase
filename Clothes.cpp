@@ -4,7 +4,7 @@ Clothes::Clothes(){
     this->job = "";
 }
 
-Clothes::Clothes(string type,string description,int space,vector<string> _actionWord,string job) : Item(type,description,space,_actionWord){
+Clothes::Clothes(string type,string name,string description,int space,string job) : Item(type,name,description,space){
     this->job = job;
     
 }

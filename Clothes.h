@@ -11,7 +11,7 @@ class Clothes : public Item{
         string job;
     public:
         Clothes();
-        Clothes(string,string,int,vector<string>,string);
+        Clothes(string,string,string,int,string);
         string getJob() const;
         void setJob(string);
         string getDescription();

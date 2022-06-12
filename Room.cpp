@@ -7,14 +7,28 @@ Room::Room(){
     for (int i = 0; i < 4; i++){
         this->exits[i] = nullptr;
     }
+    this->name = "";
+    this->key = false;
+    this->tool = false;
 }
 
-Room::Room(string description,vector<Clothes*> accessClothes,vector<Item*> items, vector<Character*> people,vector<Room*> exits){
+Room::Room(string name,string description,vector<Clothes*> accessClothes,vector<Item*> items, vector<Character*> people,vector<Room*> exits,bool key,bool tool){
     setDescription(description);
     setAccessClothes(accessClothes);
     setItem(items);
     setPeople(people);
     setExit(exits);
+    this->name = name;
+    this->key = key;
+    this->tool = tool;
+}
+
+string Room::getName(){
+    return this->name;
+}
+
+void Room::setName(string name){
+    this->name = name;
 }
 
 string Room::getDescription() const{
@@ -47,6 +61,16 @@ void Room::setPeople(vector<Character*> people){
     }
 }
 
+Room* Room::getExit(string roomName){
+    for (int i = 0; this->exits.size(); i++){
+        if (this->exits[i]->getName() == roomName){
+            return this->exits[i];
+        }
+    }
+    cout << "No hay ningún cuarto en esta salida con este nombre\n";
+    return nullptr;
+}
+
 void Room::setExit(vector<Room*>){
     for (int i = 0; i < 4; i++){
         this->exits.push_back(exits[i]);
@@ -55,7 +79,7 @@ void Room::setExit(vector<Room*>){
 
 Item* Room::getItem(string itemName){
     for (auto &item : this->items){
-        if (item->getDescription() == itemName){
+        if (item->getName() == itemName){
             return item;
         }
     }
@@ -67,6 +91,19 @@ void Room::addItem(Item* newItem){
     this->items.push_back(newItem);
 }
 
+void Room::removeItem(Item* dropped){
+    for (int i = 0; i < this->items.size(); i++){
+        if (this->items[i]->getName() == dropped->getName()){
+            Item* random;
+            this->items[i] = random;
+        }
+    }
+}
 
+bool Room::needsKey(){
+    return this->key;
+}
 
-
+bool Room::needsTool(){
+    return this->tool;
+}

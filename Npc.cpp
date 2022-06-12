@@ -5,10 +5,10 @@ Npc::Npc(){
     this->neutralized = false;
 }
 
-Npc::Npc(string nombre, Clothes* ropa, Item* objeto, bool distracted, bool neutralized): Character(nombre, ropa){
+Npc::Npc(string nombre, Clothes* ropa, Item* objeto): Character(nombre, ropa){
     this->dropItem = objeto;
-    this->distracted = distracted;
-    this->neutralized = neutralized;
+    this->distracted = false;
+    this->neutralized = false;
 }
 
 Item* Npc::getDropItem(){
@@ -23,14 +23,14 @@ bool Npc::getNeutralized(){
     return this->neutralized;
 }
 
-Item* Npc::setDropItem(Item* objeto){
+void Npc::setDropItem(Item* objeto){
     this->dropItem = objeto;
 }
 
-bool Npc::setDistracted(bool distracted){
+void Npc::setDistracted(bool distracted){
     this->distracted = distracted;
 }
 
-bool Npc::setNeutralized(bool neutralized){
+void Npc::setNeutralized(bool neutralized){
     this->neutralized = neutralized;
 }

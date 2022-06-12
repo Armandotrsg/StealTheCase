@@ -12,7 +12,7 @@ Room::Room(){
     this->tool = false;
 }
 
-Room::Room(string name,string description,vector<Clothes*> accessClothes,vector<Item*> items, vector<Character*> people,vector<Room*> exits,bool key,bool tool){
+Room::Room(string name,string description,vector<Clothes*> accessClothes,vector<Item*> items, vector<Npc*> people,vector<Room*> exits,bool key,bool tool){
     setDescription(description);
     setAccessClothes(accessClothes);
     setItem(items);
@@ -55,7 +55,7 @@ void Room::setItem(vector<Item*> item){
     }
 }
 
-void Room::setPeople(vector<Character*> people){
+void Room::setPeople(vector<Npc*> people){
     for (int i = 0; i < people.size(); i++){
         this->people.push_back(people[i]);
     }
@@ -106,4 +106,67 @@ bool Room::needsKey(){
 
 bool Room::needsTool(){
     return this->tool;
+}
+
+Npc* Room::getNpc(string name){
+    for (int i = 0; i < this->people.size(); i++){
+        if(this->people[i]->getName() == name){
+            return this->people[i];
+        }
+    }
+    return nullptr;
+}
+
+int Room::getNumberOfCharacters(){
+    int suma = 0;
+    for (int i = 0; i< this->people.size(); i++){
+        if (this->people[i]->getName() != "" || this->people[i] != nullptr){
+            suma += 1;
+        }
+    }
+    return suma;
+}
+
+bool Room::removeCharacter(string neutralized){
+    bool detected = false;
+    Npc* killed = getNpc(neutralized);
+    if (killed != nullptr){
+        if (getNumberOfCharacters() > 1){
+            int numDistracted = 0;
+            vector<Npc*> otherNpc = getOtherCharactersInRoom(killed);
+            for (auto& other : otherNpc){
+                if(other->getDistracted()){
+                    numDistracted++;
+                }
+            }
+            if (numDistracted <= otherNpc.size()){
+                detected = true;
+            } else {
+                addItem(killed->getDropItem());
+                Clothes* nuevaRopa = killed->getDisguise();
+                addItem(nuevaRopa);
+                killed = new Npc;
+            }
+        } else{
+            addItem(killed->getDropItem());
+            Clothes* nuevaRopa = killed->getDisguise();
+            addItem(nuevaRopa);
+            killed = new Npc;
+        }
+        
+    } else {
+        cout << "No hay ningún personaje con este nombre en el cuarto\n";
+    }
+    
+    return detected;
+}
+
+vector<Npc*> Room::getOtherCharactersInRoom(Npc* actual){
+    vector<Npc*> other;
+    for (auto &npc : this->people){
+        if (npc != actual){
+            other.push_back(npc);
+        }
+    }
+    return other;
 }

@@ -12,15 +12,15 @@ class Npc: public Character{
 
     public:
         Npc();
-        Npc(string, Clothes*, Item*, bool, bool);
+        Npc(string, Clothes*, Item*);
 
         Item* getDropItem();
         bool getDistracted();
         bool getNeutralized();
 
-        Item* setDropItem(Item*);
-        bool setDistracted(bool);
-        bool setNeutralized(bool);
+        void setDropItem(Item*);
+        void setDistracted(bool);
+        void setNeutralized(bool);
 
 
 

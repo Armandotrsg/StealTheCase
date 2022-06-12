@@ -1,7 +1,7 @@
 #ifndef ROOM_H
 #define ROOM_H
 
-#include "Character.h"
+#include "Npc.h"
 #include "Clothes.h"
 #include "Item.h"
 
@@ -15,28 +15,31 @@ class Room{
         string description;
         vector<Clothes*> accessClothes;
         vector<Item*> items;
-        vector<Character*> people;
+        vector<Npc*> people;
         vector<Room*> exits;
         bool key;
         bool tool;
 
     public:
         Room();
-        Room(string,string,vector<Clothes*>,vector<Item*>,vector<Character*>,vector<Room*>,bool,bool);
+        Room(string,string,vector<Clothes*>,vector<Item*>,vector<Npc*>,vector<Room*>,bool,bool);
         string getDescription() const;
         void setDescription(string);
         vector<Clothes*> getAccesClothes();
         void setAccessClothes(vector<Clothes*>);
         
-        int getNumberOfCharacter();
-        Character* getCharacter(Character*);
+        int getNumberOfCharacters();
+        Npc* getNpc(string);
+        bool removeCharacter(string);
+        vector<Npc*> getOtherCharactersInRoom(Npc*);
+
         Room* getExit(string);
         void setExit(vector<Room*>);
 
         Item* getItem(string);
         void addItem(Item*);
         void setItem(vector<Item*>);
-        void setPeople(vector<Character*>);
+        void setPeople(vector<Npc*>);
         void removeItem(Item*);
 
         string getName();

@@ -18,6 +18,6 @@ void Clothes::setJob(string job){
 }
 
 string Clothes::getDescription(){
-    return Item::getDescription() + "\n\nAl ser la ropa que traes puesta no ocupa lugar en el inventario";
+    return "\nRopa de " + getJob() + "\n";
 }
 

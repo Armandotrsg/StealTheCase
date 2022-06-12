@@ -61,7 +61,7 @@ void Hitman::addItem(Item* newItem){
         this->inventory.push_back(newItem);
         if (newItem->getType() == "Mochila"){
             bool idk = hasBackPack();
-        } else if (newItem->getType() == "Atuendo"){
+        } else if (newItem->getType() == "Ropa"){
             if (Clothes* newClothes = dynamic_cast<Clothes*>(newItem)){
                 setDisguise(newClothes);
             }
@@ -154,4 +154,21 @@ void Hitman::changeClothes(Clothes* newClothes){
     this->setDisguise(newClothes);
     getLocation()->addItem(newClothes);
 }
+
+void Hitman::neutralizeNpc(string npc){
+    Npc* neutralize = getLocation()->getNpc(npc);
+    if (neutralize != nullptr){
+        this->detected = this->location->removeCharacter(npc);
+        
+    }
+}
+
+void Hitman::distractNpc(string npc){
+    Npc* distract = getLocation()->getNpc(npc);
+    if (distract != nullptr){
+       distract->setDistracted(true);
+    }
+}
+    
+
 

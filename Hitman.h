@@ -29,10 +29,11 @@ class Hitman: public Character{
 
         Room* getLocation();
         void setLocation(Room*);
-        
         int getInventorySpaceUsed(); //Suma el peso de todos los items
-
         void changeClothes(Clothes*);
+
+        void neutralizeNpc(string);
+        void distractNpc(string);
 };
 
 #endif

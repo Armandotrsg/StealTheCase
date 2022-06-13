@@ -15,7 +15,7 @@ Item::Item(string type, string name,string description,int space){
 }
 
 string Item::getDescription(){
-    return this-> name + ": " + this->description + "\nPeso: " + to_string(this->space);
+    return this->name + ": " + this->description + "\nPeso: " + to_string(this->space);
 }
 
 void Item::setDescription(string description){

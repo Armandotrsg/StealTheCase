@@ -34,7 +34,18 @@ void Room::setName(string name){
 }
 
 string Room::getDescription() const{
-    return this->description;
+    string fullDescription = this->name;
+    fullDescription = fullDescription + ": " + this->description;
+    fullDescription = fullDescription + "\nPersonajes en el cuarto: ";
+    for (int i = 0; i < this->people.size(); i++){
+        fullDescription = fullDescription + "\n- " + this->people[i]->getName();
+    }
+    fullDescription = fullDescription + "\nItems en el cuarto: ";
+    for (int i = 0; i < this->items.size(); i++){
+        fullDescription = fullDescription + "\n- " + this->items[i]->getName();
+    }
+    fullDescription += "\n";
+    return fullDescription;
 }
 
 void Room::setDescription(string description){

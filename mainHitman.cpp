@@ -211,6 +211,22 @@ int main(){
     banio->setExits(exitsBoveda);
 
     
+    //cout << "\n\nIngresa tu nombre para comenzar:\n>>";
+    //string name;
+    //cin >> name;
+    Hitman* player = new Hitman("name",hitmanClothes,estacionamiento);
+    Item* random = new Item("Inutil","Papel","En esto puedo anotar cosas",1);
+    cout << random->getDescription() << endl;
+    player->addSpecificItem(random);
+    
+    string palabra1,
+           palabra2;
+    
+    cout << player->getLocation()->getDescription();
+    
+    player->addItem("Moneda");
+    player->viewInventory();
+
     
     return 0;
 }

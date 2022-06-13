@@ -21,10 +21,12 @@ class Hitman: public Character{
         Item* seekItem(string);
         Item* getItemType(string);
 
-        void addItem(Item*);
+        void addItem(string);
+        void addSpecificItem(Item*);
         bool hasBackPack();
         bool move(string); //Devuelve si sí puede caminar y se mueve
         void viewInventory();
+        vector<Item*> getWholeInventory();
         void dropItem(string);
 
         Room* getLocation();
@@ -34,6 +36,8 @@ class Hitman: public Character{
 
         void neutralizeNpc(string);
         void distractNpc(string);
+
+        bool isDetected();
 };
 
 #endif

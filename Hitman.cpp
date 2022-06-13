@@ -31,6 +31,10 @@ Item* Hitman::seekItem(string itemName){
             return item;
         }
     }
+    if (itemName == getDisguise()->getName()){
+        Item* item = getDisguise();
+        return item;
+    }
     cout << "No tienes ningún item que tenga este nombre" << endl;
     return nullptr;
 }
@@ -52,22 +56,33 @@ int Hitman::getInventorySpaceUsed(){
     return suma;
 }
 
-void Hitman::addItem(Item* newItem){
-    int maxInventory = 5;
-    if (hasBackPack()){
-        maxInventory = 10;
-    }
-    if (newItem->getSpace() <= (maxInventory - getInventorySpaceUsed())){
-        this->inventory.push_back(newItem);
-        if (newItem->getType() == "Mochila"){
-            bool idk = hasBackPack();
-        } else if (newItem->getType() == "Ropa"){
-            dropItem(newItem->getName());
-            if (Clothes* newClothes = dynamic_cast<Clothes*>(newItem)){
-                setDisguise(newClothes);
+void Hitman::addSpecificItem(Item* item){
+    this->inventory.push_back(item);
+}
+
+void Hitman::addItem(string newItemname){
+    Item* newItem = this->location->getItem(newItemname);
+    
+    if (newItem != nullptr){
+        int maxInventory = 5;
+        if (hasBackPack()){
+            maxInventory = 10;
+        }
+        if (newItem->getSpace() <= (maxInventory - getInventorySpaceUsed())){
+            if (newItem->getType() == "Mochila"){
+                bool idk = hasBackPack();
+            } else if (newItem->getType() == "Ropa"){
+                dropItem(newItemname);
+                if (Clothes* newClothes = dynamic_cast<Clothes*>(newItem)){
+                    setDisguise(newClothes);
+                }
+                
+            } else{
+                this->inventory.push_back(newItem);
+                this->location->removeItem(newItem);
             }
-            
-            
+        } else {
+            cout << "No tienes más espacio en el inventario\n";
         }
     }
 }
@@ -127,14 +142,19 @@ bool Hitman::move(string dir){
 
 void Hitman::viewInventory(){
     cout << "\t\tINVENTARIO\n";
-    for (auto &item : this->inventory){
-        if (item->getType() != "Mochila" || item->getType() != "Llave"){
-            cout << item->getDescription() << endl;
+    for (int i = 1; i < this->inventory.size(); i++){
+        
+        if (this->inventory[i]->getType() != "Mochila" || this->inventory[i]->getType() != "Llave"){
+            cout << this->inventory[i]->getDescription() << endl;
             cout << "-----------------------------------" << endl;
         }
     }
     cout << "Ingresa la palabra USAR o DEJAR seguido del nombre del objeto de acuerdo a lo que quieras hacer" << endl;
 
+}
+
+vector<Item*> Hitman::getWholeInventory(){
+    return this->inventory;
 }
 
 void Hitman::dropItem(string item){
@@ -171,5 +191,7 @@ void Hitman::distractNpc(string npc){
     }
 }
     
-
+bool Hitman::isDetected(){
+    return this->detected;
+}
 

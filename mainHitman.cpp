@@ -31,7 +31,7 @@ int main(){
 
     itemsBaldio.push_back(new Item("Mochila", "Morral","Un poco percudido, pero aun cumple con su función", 0));
     itemsBaldio.push_back(new Item("Herramienta", "Ganzúa","Ayuda a abrir ciertas puertas cerradas con llave.", 3));
-    itemsBaldio.push_back(new Item("Inutil", "Fotogrsfia","Parece que fue tomada en esta misma mansión. La fecha dice 17-mayo-2016", 1));
+    itemsBaldio.push_back(new Item("Inutil", "Fotografia","Parece que fue tomada en esta misma mansión. La fecha dice 17-mayo-2016", 1));
 
     itemsAlmacen.push_back(new Item("Distractor", "Tomate","No huele nada bien, pero podrías lanzarlo...", 2));
     itemsAlmacen.push_back(new Item("Inutil", "Recibo de Compras"," Tiene escrito: 'Harina, Tomates, Cebollas, Huevo, Leche...'", 1));
@@ -215,18 +215,17 @@ int main(){
     //string name;
     //cin >> name;
     Hitman* player = new Hitman("name",hitmanClothes,estacionamiento);
-    Item* random = new Item("Inutil","Papel","En esto puedo anotar cosas",1);
-    cout << random->getDescription() << endl;
-    player->addSpecificItem(random);
-    
-    string palabra1,
-           palabra2;
-    
+    cout << player->getLocation()->getDescription();
+    player->neutralizeNpc("Valet");
+    cout << player->getLocation()->getDescription();
+    player->addItem("Disfraz de valet");
+    cout << player->getLocation()->getDescription();
+    player->viewInventory();
+    player->move("Terreno Baldío");
+    cout << player->getLocation()->getDescription();
+    player->addItem("Morral");
     cout << player->getLocation()->getDescription();
     
-    player->addItem("Moneda");
-    player->viewInventory();
-
     
     return 0;
 }

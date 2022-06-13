@@ -42,7 +42,9 @@ string Room::getDescription() const{
     }
     fullDescription = fullDescription + "\nItems en el cuarto: ";
     for (int i = 0; i < this->items.size(); i++){
-        fullDescription = fullDescription + "\n- " + this->items[i]->getName();
+        if (this->items[i]->getName() != ""){
+            fullDescription = fullDescription + "\n- " + this->items[i]->getName();
+        }
     }
     fullDescription += "\n";
     return fullDescription;
@@ -75,13 +77,18 @@ void Room::setPeople(vector<Npc*> people){
 }
 
 Room* Room::getExit(string roomName){
-    for (int i = 0; this->exits.size(); i++){
+    for (int i = 0; i < this->exits.size(); i++){
         if (this->exits[i]->getName() == roomName){
             return this->exits[i];
         }
     }
     cout << "No hay ningún cuarto en esta salida con este nombre\n";
+    
     return nullptr;
+}
+
+vector<Room*> Room::getAllExits(){
+    return this->exits;
 }
 
 void Room::setExits(vector<Room*> exits){

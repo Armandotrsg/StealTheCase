@@ -35,6 +35,7 @@ class Room{
         vector<Npc*> getOtherCharactersInRoom(Npc*);
 
         Room* getExit(string);
+        vector<Room*> getAllExits();
         void setExits(vector<Room*>);
 
         Item* getItem(string);

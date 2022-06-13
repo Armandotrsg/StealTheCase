@@ -71,10 +71,12 @@ void Hitman::addItem(string newItemname){
         if (newItem->getSpace() <= (maxInventory - getInventorySpaceUsed())){
             if (newItem->getType() == "Mochila"){
                 bool idk = hasBackPack();
+                this->location->removeItem(newItem);
             } else if (newItem->getType() == "Ropa"){
-                dropItem(newItemname);
+                dropItem(getDisguise()->getName());
                 if (Clothes* newClothes = dynamic_cast<Clothes*>(newItem)){
                     setDisguise(newClothes);
+                    this->location->removeItem(newItem);
                 }
                 
             } else{
@@ -141,7 +143,7 @@ bool Hitman::move(string dir){
 }
 
 void Hitman::viewInventory(){
-    cout << "\t\tINVENTARIO\n";
+    cout << "\t\tINVENTARIO:\n\n";
     for (int i = 1; i < this->inventory.size(); i++){
         
         if (this->inventory[i]->getType() != "Mochila" || this->inventory[i]->getType() != "Llave"){
@@ -149,6 +151,7 @@ void Hitman::viewInventory(){
             cout << "-----------------------------------" << endl;
         }
     }
+    cout << getDisguise()->getDescription() << endl;
     cout << "Ingresa la palabra USAR o DEJAR seguido del nombre del objeto de acuerdo a lo que quieras hacer" << endl;
 
 }
@@ -161,10 +164,13 @@ void Hitman::dropItem(string item){
     Item* dropObject = seekItem(item);
     string message;
     if (dropObject != nullptr){
-        this->location->addItem(dropObject);
-        int index = getItemIndex(dropObject);
-        this->inventory.erase(this->inventory.begin() + index);
-        message = "Item eliminado exitosamente";
+        if ( dropObject->getType() != "Ropa"){
+            this->location->addItem(dropObject);
+            int index = getItemIndex(dropObject);
+            this->inventory.erase(this->inventory.begin() + index);
+            message = "Item eliminado exitosamente";
+        }
+        
     } else{
         message = "El item ingresado no coincide con ningún item de tu inventario";
     }

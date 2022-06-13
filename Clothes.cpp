@@ -18,6 +18,6 @@ void Clothes::setJob(string job){
 }
 
 string Clothes::getDescription(){
-    return "\nRopa de " + getJob() + "\n";
+    return Item::getDescription() + "\nRopa de " + getJob() + "\n";
 }
 

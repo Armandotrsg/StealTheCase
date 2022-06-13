@@ -70,7 +70,6 @@ int main(){
     Clothes* valet = new Clothes("Ropa","Disfraz de valet","Puedes entrar a la sala con esto",0,"Valet");
     npcParking.push_back(new Npc("Valet",valet,noItem1));
 
-
     Clothes* cargador1 = new Clothes("Ropa","Disfraz de repartidor","Puedes entrar al almacén con esto",0,"Repartidor");
     Clothes* cargador2 = new Clothes("Ropa","Disfraz de repartidor","Puedes entrar al almacén con esto",0,"Repartidor");
     Item* noItem2;
@@ -121,7 +120,16 @@ int main(){
     accessParking.push_back(ejecutivo);
     accessParking.push_back(guardia1);
 
-    vector<Clothes*> accessBaldio = accessParking;
+    vector<Clothes*> accessBaldio;
+    accessBaldio.push_back(hitmanClothes);
+    accessBaldio.push_back(mesero1);
+    accessBaldio.push_back(chef);
+    accessBaldio.push_back(valet);
+    accessBaldio.push_back(cargador1);
+    accessBaldio.push_back(ejecutivo);
+    accessBaldio.push_back(guardia1);
+
+
     vector<Clothes*> accessAlmacen;
     accessAlmacen.push_back(cargador1);
     accessAlmacen.push_back(mesero1);
@@ -138,7 +146,14 @@ int main(){
     accessSala.push_back(ejecutivo);
     accessSala.push_back(guardia1);
 
-    vector<Clothes*> accessBanio = accessParking;
+    vector<Clothes*> accessBanio;
+    accessBanio.push_back(hitmanClothes);
+    accessBanio.push_back(mesero1);
+    accessBanio.push_back(chef);
+    accessBanio.push_back(valet);
+    accessBanio.push_back(cargador1);
+    accessBanio.push_back(ejecutivo);
+    accessBanio.push_back(guardia1);
 
     vector<Clothes*> accessBoveda;
     accessBoveda.push_back(ejecutivo);
@@ -154,7 +169,6 @@ int main(){
     Room* sala = new Room("Sala","Sala de estar de la casa, donde puedes esperar para entrar al comedor",accessSala,itemsSala,npcSala,false,false);
     Room* banio = new Room("Baño","Wow, todo está hecho de porcelana y mármol, ¡Bastante elegante!",accessBanio,itemsBanio,npcBanio,false,false);
     Room* boveda = new Room("Bóveda","Mira, aquí guardan los papeles...",accessBoveda,itemsBoveda,npcBoveda,true,false);
-
 
     vector<Room*> exitsParking;
     exitsParking.push_back(baldio);
@@ -197,8 +211,7 @@ int main(){
     banio->setExits(exitsBoveda);
 
     
-
-
+    
     return 0;
 }
 

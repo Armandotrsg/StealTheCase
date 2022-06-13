@@ -2,21 +2,24 @@
 
 Room::Room(){
     this->description = "";
-    this->accessClothes[0] = nullptr;
-    this->accessClothes[1] = nullptr;
-    for (int i = 0; i < 4; i++){
-        this->exits[i] = nullptr;
-    }
+    this->accessClothes[0] = new Clothes;
+    this->accessClothes[1] = new Clothes;
     this->name = "";
     this->key = false;
     this->tool = false;
 }
 
-Room::Room(string name,string description,vector<Clothes*> accessClothes,vector<Item*> items, vector<Npc*> people,bool key,bool tool){
-    setDescription(description);
-    setAccessClothes(accessClothes);
-    setItem(items);
-    setPeople(people);
+Room::Room(string name,string description,vector<Clothes*> access,vector<Item*> items, vector<Npc*> people,bool key,bool tool){
+    this->description = description;
+    for (int i = 0; i < access.size(); i++){
+        this->accessClothes.push_back(access[i]);
+    }
+    for (int i = 0; i < items.size(); i++){
+        this->items.push_back(items[i]);
+    }
+    for (int i = 0; i < people.size(); i++){
+        this->people.push_back(people[i]);
+    }
     this->name = name;
     this->key = key;
     this->tool = tool;
@@ -42,13 +45,13 @@ vector<Clothes*> Room::getAccesClothes(){
     return this->accessClothes;
 }
 
-void Room::setAccessClothes(vector<Clothes*> accesClothes){
-    for (int i = 0; i < 2; i++){
-        this->accessClothes.push_back(accessClothes[i]);
+void Room::setAccessClothes(vector<Clothes*> access){
+    for (int i = 0; i < access.size(); i++){
+        this->accessClothes.push_back(access[i]);
     }
 }
 
-void Room::setItem(vector<Item*> item){
+void Room::setItem(vector<Item*> items){
     for (int i = 0; i < items.size(); i++){
         this->items.push_back(items[i]);
     }
@@ -71,10 +74,12 @@ Room* Room::getExit(string roomName){
 }
 
 void Room::setExits(vector<Room*> exits){
-    for (int i = 0; i < 4; i++){
+    for (int i = 0; i < exits.size(); i++){
         this->exits.push_back(exits[i]);
     }
 }
+
+//Allright here
 
 Item* Room::getItem(string itemName){
     for (auto &item : this->items){

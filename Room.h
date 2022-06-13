@@ -16,9 +16,9 @@ class Room{
         vector<Clothes*> accessClothes;
         vector<Item*> items;
         vector<Npc*> people;
-        vector<Room*> exits;
         bool key;
         bool tool;
+        vector<Room*> exits;
 
     public:
         Room();

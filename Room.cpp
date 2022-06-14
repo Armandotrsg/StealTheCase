@@ -33,9 +33,9 @@ void Room::setName(string name){
     this->name = name;
 }
 
-string Room::getDescription() const{
+string Room::getDescription(){
     string fullDescription = this->name;
-    fullDescription = fullDescription + ": " + this->description;
+    fullDescription = fullDescription + ":\n" + this->description;
     fullDescription = fullDescription + "\nPersonajes en el cuarto: ";
     for (int i = 0; i < this->people.size(); i++){
         fullDescription = fullDescription + "\n- " + this->people[i]->getName();
@@ -136,6 +136,10 @@ Npc* Room::getNpc(string name){
         }
     }
     return nullptr;
+}
+
+vector<Npc*> Room::getAllCharacters(){
+    return this->people;
 }
 
 int Room::getNpcIndex(Npc* npc){

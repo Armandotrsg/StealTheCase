@@ -23,12 +23,13 @@ class Room{
     public:
         Room();
         Room(string,string,vector<Clothes*>,vector<Item*>,vector<Npc*>,bool,bool);
-        string getDescription() const;
+        string getDescription();
         void setDescription(string);
         vector<Clothes*> getAccesClothes();
         void setAccessClothes(vector<Clothes*>);
         
         int getNumberOfCharacters();
+        vector<Npc*> getAllCharacters();
         Npc* getNpc(string);
         int getNpcIndex(Npc*);
         bool removeCharacter(string);

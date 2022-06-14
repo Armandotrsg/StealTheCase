@@ -124,11 +124,13 @@ bool Hitman::move(string dir){
                 setLocation(voyA);
                 returnType = true;
             } else{
-                cout << "Este cuarto parece estar trabado...";
-            }
+                cout << "Este cuarto parece estar trabado...\n";
+            } 
+        } else {
+            setLocation(voyA);
+            returnType = true;
         }
-        setLocation(voyA);
-        returnType = true;
+        
     } else {
         cout << "Este cuarto no es una salida para " << getLocation()->getName() << endl;
     }
@@ -187,6 +189,8 @@ void Hitman::neutralizeNpc(string npc){
     if (neutralize != nullptr){
         this->detected = this->location->removeCharacter(npc);
         
+    } else {
+        cout << "No hay ningún personaje con este nombre en este cuarto\n";
     }
 }
 

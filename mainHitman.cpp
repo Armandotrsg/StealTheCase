@@ -221,12 +221,10 @@ int main(){
     player->addItem("Disfraz de valet");
     cout << player->getLocation()->getDescription();
     player->viewInventory();
-    player->move("Terreno Baldío");
-    cout << player->getLocation()->getDescription();
-    player->addItem("Morral");
-    cout << player->getLocation()->getDescription();
-    
-    
+    player->move("Sala");
+    cout << sala;
+
+
     return 0;
 }
 

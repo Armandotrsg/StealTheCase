@@ -194,7 +194,6 @@ int main(){
     player->move("Almacén");
     cout << player->getLocation()->getDescription();
     cout << player->isDetected() << endl;
-    //player->neutralizeNpc("Mesero");
     player->distractNpc("Repartidor");
     player->distractNpc("Mesero");
     player->neutralizeNpc("Mesero");

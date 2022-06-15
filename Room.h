@@ -50,6 +50,9 @@ class Room{
 
         bool needsKey();
         bool needsTool();
+
+        bool setKey(bool);
+        bool setTool(bool);
         
 
 };

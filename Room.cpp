@@ -191,3 +191,11 @@ vector<Npc*> Room::getOtherCharactersInRoom(Npc* actual){
     }
     return other;
 }
+
+bool Room::setKey(bool key){
+    this->key = key;
+}
+
+bool Room::setTool(bool tool){
+    this->tool = tool;
+}

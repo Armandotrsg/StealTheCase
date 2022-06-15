@@ -112,21 +112,13 @@ bool Hitman::move(string dir){
     Room* voyA=getLocation()->getExit(dir);
     if (voyA!=nullptr){
         if (voyA->needsKey()){
-            Item* hasKey = seekItem("Llave");
-            if (hasKey != nullptr){
-                setLocation(voyA);
-                returnType = true;
-            } else {
-                cout << "Este cuarto necesita una llave...\n";
-            }
+            
+            cout << "Este cuarto necesita una llave...\n";
+            
         } else if (voyA->needsTool()){
-            Item* hasTool = getItemType("Herramienta");
-            if (hasTool != nullptr){
-                setLocation(voyA);
-                returnType = true;
-            } else{
-                cout << "Este cuarto parece estar trabado...\n";
-            } 
+            
+            cout << "Este cuarto parece estar trabado...\n";
+             
         } else {
             setLocation(voyA);
             returnType = true;
@@ -157,7 +149,7 @@ void Hitman::viewInventory(){
         }
     }
     cout << getDisguise()->getDescription() << endl;
-    cout << "Ingresa la palabra USAR o DEJAR seguido del nombre del objeto de acuerdo a lo que quieras hacer" << endl;
+    cout << "Ingresa la palabra 'usar' o 'dejar' seguido del nombre del objeto de acuerdo a lo que quieras hacer: " << endl;
 
 }
 
@@ -206,4 +198,5 @@ void Hitman::distractNpc(string npc){
 bool Hitman::isDetected(){
     return this->detected;
 }
+
 

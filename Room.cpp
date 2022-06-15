@@ -155,6 +155,7 @@ bool Room::removeCharacter(string neutralized){
             }
             if (numDistracted < otherNpc.size()){
                 detected = true;
+                cout << "Has sido detectado, hay más de un personaje en el cuarto.\nTienes que distraer a los otros personajes";
             } else {
                 if(killed->getDropItem()->getName() != ""){
                     setItem(killed->getDropItem());

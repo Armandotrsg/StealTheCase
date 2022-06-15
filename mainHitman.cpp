@@ -80,7 +80,7 @@ int main(){
     Item* noItem5;
     cocina->addNpc(new Npc("Chef",chef,cuchillo));
     cocina->addNpc(new Npc("Mesero",mesero1,noItem4));
-    comedor->addNpc(new Npc("Mesero",mesero2,bandeja));
+    almacen->addNpc(new Npc("Mesero",mesero2,bandeja));
     comedor->addNpc(new Npc("Mesero",mesero3,noItem5));
     
     Clothes* target = new Clothes("Ropa","Disfraz de ejecutivo","Puedes entrar a la sala y al comedor",0,"Ejecutivo");
@@ -194,6 +194,12 @@ int main(){
     player->move("Almacén");
     cout << player->getLocation()->getDescription();
     cout << player->isDetected() << endl;
+    //player->neutralizeNpc("Mesero");
+    player->distractNpc("Repartidor");
+    player->distractNpc("Mesero");
+    player->neutralizeNpc("Mesero");
+    cout << player->getLocation()->getDescription();
+    
 
     return 0;
 }

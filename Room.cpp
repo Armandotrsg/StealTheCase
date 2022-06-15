@@ -2,24 +2,13 @@
 
 Room::Room(){
     this->description = "";
-    this->accessClothes[0] = new Clothes;
-    this->accessClothes[1] = new Clothes;
     this->name = "";
     this->key = false;
     this->tool = false;
 }
 
-Room::Room(string name,string description,vector<Clothes*> access,vector<Item*> items, vector<Npc*> people,bool key,bool tool){
+Room::Room(string name,string description,bool key,bool tool){
     this->description = description;
-    for (int i = 0; i < access.size(); i++){
-        this->accessClothes.push_back(access[i]);
-    }
-    for (int i = 0; i < items.size(); i++){
-        this->items.push_back(items[i]);
-    }
-    for (int i = 0; i < people.size(); i++){
-        this->people.push_back(people[i]);
-    }
     this->name = name;
     this->key = key;
     this->tool = tool;
@@ -58,22 +47,16 @@ vector<Clothes*> Room::getAccesClothes(){
     return this->accessClothes;
 }
 
-void Room::setAccessClothes(vector<Clothes*> access){
-    for (int i = 0; i < access.size(); i++){
-        this->accessClothes.push_back(access[i]);
-    }
+void Room::addAccessClothes(Clothes* access){
+    this->accessClothes.push_back(access);
 }
 
-void Room::setItem(vector<Item*> items){
-    for (int i = 0; i < items.size(); i++){
-        this->items.push_back(items[i]);
-    }
+void Room::setItem(Item* item){
+    this->items.push_back(item);
 }
 
-void Room::setPeople(vector<Npc*> people){
-    for (int i = 0; i < people.size(); i++){
-        this->people.push_back(people[i]);
-    }
+void Room::addNpc(Npc* npc){
+    this->people.push_back(npc);
 }
 
 Room* Room::getExit(string roomName){
@@ -91,10 +74,8 @@ vector<Room*> Room::getAllExits(){
     return this->exits;
 }
 
-void Room::setExits(vector<Room*> exits){
-    for (int i = 0; i < exits.size(); i++){
-        this->exits.push_back(exits[i]);
-    }
+void Room::addExit(Room* exit){
+    this->exits.push_back(exit);
 }
 
 //Allright here
@@ -109,9 +90,6 @@ Item* Room::getItem(string itemName){
     return nullptr;
 }
 
-void Room::addItem(Item* newItem){
-    this->items.push_back(newItem);
-}
 
 void Room::removeItem(Item* dropped){
     for (int i = 0; i < this->items.size(); i++){
@@ -175,19 +153,23 @@ bool Room::removeCharacter(string neutralized){
                     numDistracted++;
                 }
             }
-            if (numDistracted <= otherNpc.size()){
+            if (numDistracted < otherNpc.size()){
                 detected = true;
             } else {
-                addItem(killed->getDropItem());
-                Clothes* nuevaRopa = killed->getDisguise();
-                addItem(nuevaRopa); //Checar si hay error porque el método pide un item, no ropa
+                if(killed->getDropItem()->getName() != ""){
+                    setItem(killed->getDropItem());
+                }
+                Item* nuevaRopa = killed->getDisguise();
+                setItem(nuevaRopa); //Checar si hay error porque el método pide un item, no ropa
                 int index = getNpcIndex(killed);
                 this->people.erase(this->people.begin()+index);
             }
         } else{
-            addItem(killed->getDropItem());
-            Clothes* nuevaRopa = killed->getDisguise();
-            addItem(nuevaRopa);
+            if(killed->getDropItem()->getName() != ""){
+                    setItem(killed->getDropItem());
+                }
+            Item* nuevaRopa = killed->getDisguise();
+            setItem(nuevaRopa);
             int index = getNpcIndex(killed);
             this->people.erase(this->people.begin()+index);
         }

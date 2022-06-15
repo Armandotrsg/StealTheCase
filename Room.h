@@ -22,11 +22,12 @@ class Room{
 
     public:
         Room();
-        Room(string,string,vector<Clothes*>,vector<Item*>,vector<Npc*>,bool,bool);
+        Room(string,string,bool,bool);
         string getDescription();
         void setDescription(string);
         vector<Clothes*> getAccesClothes();
-        void setAccessClothes(vector<Clothes*>);
+        void addAccessClothes(Clothes*);
+        void addNpc(Npc*);
         
         int getNumberOfCharacters();
         vector<Npc*> getAllCharacters();
@@ -37,12 +38,11 @@ class Room{
 
         Room* getExit(string);
         vector<Room*> getAllExits();
-        void setExits(vector<Room*>);
+        void addExit(Room*);
 
-        Item* getItem(string);
-        void addItem(Item*);
-        void setItem(vector<Item*>);
-        void setPeople(vector<Npc*>);
+        
+        Item* getItem(string); //solo para inicializar
+        void setItem(Item*);
         void removeItem(Item*);
 
         string getName();

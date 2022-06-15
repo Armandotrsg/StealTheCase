@@ -73,8 +73,9 @@ void Hitman::addItem(string newItemname){
                 bool idk = hasBackPack();
                 this->location->removeItem(newItem);
             } else if (newItem->getType() == "Ropa"){
-                dropItem(getDisguise()->getName());
                 if (Clothes* newClothes = dynamic_cast<Clothes*>(newItem)){
+                    Item* currentClothes = getDisguise();
+                    this->location->setItem(currentClothes);
                     setDisguise(newClothes);
                     this->location->removeItem(newItem);
                 }
@@ -134,12 +135,14 @@ bool Hitman::move(string dir){
     } else {
         cout << "Este cuarto no es una salida para " << getLocation()->getName() << endl;
     }
-
+    bool det = true;
     for (auto& ropa : getLocation()->getAccesClothes()){
-        if (getDisguise()->getJob() != ropa->getJob()){
-            this->detected = true;
+        if (getDisguise()->getName() == ropa->getName()){
+            det = false;
+            break;
         }
     }
+    this->detected = det;
     
     return returnType;
 }
@@ -167,7 +170,7 @@ void Hitman::dropItem(string item){
     string message;
     if (dropObject != nullptr){
         if ( dropObject->getType() != "Ropa"){
-            this->location->addItem(dropObject);
+            this->location->setItem(dropObject);
             int index = getItemIndex(dropObject);
             this->inventory.erase(this->inventory.begin() + index);
             message = "Item eliminado exitosamente";
@@ -179,10 +182,7 @@ void Hitman::dropItem(string item){
     cout << message << endl;
 }
 
-void Hitman::changeClothes(Clothes* newClothes){
-    this->setDisguise(newClothes);
-    getLocation()->addItem(newClothes);
-}
+
 
 void Hitman::neutralizeNpc(string npc){
     Npc* neutralize = getLocation()->getNpc(npc);
@@ -198,6 +198,8 @@ void Hitman::distractNpc(string npc){
     Npc* distract = getLocation()->getNpc(npc);
     if (distract != nullptr){
        distract->setDistracted(true);
+    } else{
+        cout << "\nNo hay ningún npc con este nombre\n";
     }
 }
     

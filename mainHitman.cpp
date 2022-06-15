@@ -130,6 +130,7 @@ int main(){
 
     sala->addAccessClothes(ejecutivo);
     sala->addAccessClothes(guardia1);
+    sala->addAccessClothes(valet);
 
     banio->addAccessClothes(hitmanClothes);
     banio->addAccessClothes(mesero1);
@@ -161,6 +162,7 @@ int main(){
     sala->addExit(boveda);
     sala->addExit(banio);
     sala->addExit(estacionamiento);
+    
 
     banio->addExit(sala);
 
@@ -172,109 +174,178 @@ int main(){
     //string name;
     //cin >> name;
     Hitman* player = new Hitman("name",hitmanClothes,estacionamiento);
-<<<<<<< HEAD
-    string com1, com2, com3;
+    string com1, com2, frase;
     while(!player->isDetected()){
+        com1 = ""; com2 = ""; frase = "";
+        cout << "\n\n\t\t\tMENÚ PRINCIPAL" << endl;
         cout << "\nIngresa un comando: ";
-        cin >> com1 >> com2; //>> com3;
-
+        getline(cin,frase);
+        bool oneWord = true;
+        for (int i = 0; i < frase.length(); i++){
+            if (frase[i] == ' '){
+                oneWord = false;
+                break;
+            }
+            com1 += frase[i];
+        }
+        if (!oneWord){
+            for (int i =com1.length()+1; i < frase.length(); i++ ){
+                com2 += frase[i];
+            }
+        }
+        
         if(com1 == "ayuda"){
             cout << player->getLocation()->getDescription();
             cout << "\n Recuerda que puedes utilizar los siguientes comandos (escribelos como se muestran):" << "\n\tayuda \n\tver inventario \n\tmoverse (cuarto) \n\ttomar (objeto)";
         }
         else if (com1 == "ver"){
+            com1 = ""; com2 = ""; frase = "";
             player->viewInventory();
-            cin >> com1 >> com2; // >> com3;
-            if(com1 == "usar" && com2 == player->seekItem(com2)->getName()){ //falta quitar los items del inventario
-                if(player->seekItem(com2)->getType() == "Inutil"){
-                    cout << "\nEste objeto no tiene ninguna utilidad.";
-                }
-                else if(player->seekItem(com2)->getType() == "Arma"){
-                    if(player->getLocation()->getNumberOfCharacters() != 0){
-                        cout << "\nSelecciona el objetivo a neutralizar: \n";
-                        vector<Npc*> roomCharacters = player->getLocation()->getAllCharacters(); //imprimir
-                        for (auto npc : roomCharacters){
-                            cout <<"\n- " <<npc->getName() << endl;
-                        }
-                        cin >> com1;
-                        if(com1 == player->getLocation()->getNpc(com1)->getName()){
-                            player->neutralizeNpc(com1);
-                            cout << "\n Has neutralizado a " << com1;
-                        }
-                    }
-                    else{
-                        cout << "\nNo hay nadie en este cuarto.";
-                    }
-                }
-                else if(player->seekItem(com2)->getType() == "Distractor"){
-                    if(player->getLocation()->getNumberOfCharacters() != 0){
-                        cout << "\nSelecciona el objetivo a distraer: \n";
-                        player->getLocation()->getAllCharacters();
-
-                        cin >> com1;
-                        if(com1 == player->getLocation()->getNpc(com1)->getName()){
-                            player->distractNpc(com1);
-                            cout << "\n Has distraído a " << com1;
-                        }
-                    }
-                    else{
-                        cout << "\nNo hay nadie en este cuarto.";
-                    }
-                } 
-                else if(player->seekItem(com2)->getType() == "Llave"){ //aun no se como hacer ese   
-                    for(int i = 0; i < player->getLocation()->getAllExits().size(); i++){
-                        if (player->getLocation()->getAllExits()[i]->needsKey() == true){
-                            cout << "\nEstos cuartos pueden ser abiertos con tu llave: ";
-                            cout << endl << player->getLocation()->getAllExits()[i]->getName();
-                            cout << "\nSelecciona el cuarto que quieres abrir: ";
-                            cin >> com3;
-
-                            if(com3 == player->getLocation()->getExit(com3)->getName()){
-                                player->getLocation()->getExit(com3)->setKey(false);
-                            }
-                        }
-                        else{
-                            cout << "\nNo hay ningún cuarto cerca que necesite una llave.";
-                        }
-                    }
-                }
-                else if(player->seekItem(com2)->getType() == "Herramienta"){ //aun no se como hacer ese   
-                    for(int i = 0; i < player->getLocation()->getAllExits().size(); i++){
-                        if (player->getLocation()->getAllExits()[i]->needsTool() == true){
-                            cout << "\nEstos cuartos pueden ser abiertos con tu Herramienta: ";
-                            cout << endl << player->getLocation()->getAllExits()[i]->getName();
-                            cout << "\nSelecciona el cuarto que quieres abrir: ";
-                            cin >> com3;
-
-                            if(com3 == player->getLocation()->getExit(com3)->getName()){
-                                player->getLocation()->getExit(com3)->setTool(false);
-                            }
-                        }
-                        else{
-                            cout << "\nNo hay ningún cuarto cerca que necesite una Herramienta.";
-                        }
-                    }
-                }
-                else if(player->seekItem(com2)->getType() == "Objetivo"){
-                    cout << "\nFelicidades, has conseguido robar los papeles.";
+            getline(cin,frase);
+            bool oneWord = true;
+            for (int i = 0; i < frase.length(); i++){
+                if (frase[i] == ' '){
+                    oneWord = false;
                     break;
                 }
+                com1 += frase[i];
+            }
+            if (!oneWord){
+                for (int i =com1.length()+1; i < frase.length(); i++ ){
+                    com2 += frase[i];
+                }
+            }
+            if (com1 == "salir"){
+                continue;
+            }
+           
+            Item* toUse = player->seekItem(com2);
+            if (toUse != nullptr){
+                    if(com1 == "usar"){ //falta quitar los items del inventario
+                        if(toUse->getType() == "Inutil"){
+                            cout << "\nEste objeto no tiene ninguna utilidad.";
+                        }
+                        else if(toUse->getType() == "Arma"){
+                            string com3;
+                            if(player->getLocation()->getNumberOfCharacters() != 0){
+                                cout << "\nSelecciona el objetivo a neutralizar: \n";
+                                vector<Npc*> roomCharacters = player->getLocation()->getAllCharacters(); //imprimir
+                                for (auto npc : roomCharacters){
+                                    cout <<"\n- " <<npc->getName() << endl;
+                                }
+                                cin >> com3;
+                                if(com3 == player->getLocation()->getNpc(com3)->getName()){
+                                    player->neutralizeNpc(com3);
+                                    player->removeItem(toUse);
+                                    cout << "\n Has neutralizado a " << com3;
+                                    
+                                }
+                            }
+                            else{
+                                cout << "\nNo hay nadie en este cuarto.";
+                            }
+                        }
+                        else if(toUse->getType() == "Distractor"){
+                            string com3;
+                            if(player->getLocation()->getNumberOfCharacters() != 0){
+                                cout << "\nSelecciona el objetivo a distraer: \n";
+                                vector<Npc*> roomCharacters = player->getLocation()->getAllCharacters(); //imprimir
+                                    for (auto npc : roomCharacters){
+                                        cout <<"\n- " <<npc->getName() << endl;
+                                    }
+
+                                cin >> com3;
+                                if(com3 == player->getLocation()->getNpc(com3)->getName()){
+                                    player->distractNpc(com3);
+                                    player->removeItem(toUse);
+                                    cout << "\n Has distraído a " << com3;
+                                }
+                            }
+                            else{
+                                cout << "\nNo hay nadie en este cuarto.";
+                            }
+                        } 
+                        else if(toUse->getType() == "Llave"){ //aun no se como hacer ese
+                            bool hayCuarto = false;   
+                            for(int i = 0; i < player->getLocation()->getAllExits().size(); i++){
+                                if (player->getLocation()->getAllExits()[i]->needsKey() == true){
+                                    cout << "\nEstos cuartos pueden ser abiertos con tu llave: ";
+                                    cout << endl << player->getLocation()->getAllExits()[i]->getName();
+                                    cout << "\nSelecciona el cuarto que quieres abrir: ";
+                                    getline(cin,frase);
+
+                                    if(frase == player->getLocation()->getExit(frase)->getName()){
+                                        player->getLocation()->getExit(frase)->setKey(false);
+                                    }
+                                    hayCuarto = true;
+                                }
+                                if (!hayCuarto){
+                                    cout << "\nNo hay ningún cuarto cerca que necesite una llave.";
+                                }
+                            }
+                        }
+                        else if(toUse->getType() == "Herramienta"){ //aun no se como hacer ese   
+                            for(int i = 0; i < player->getLocation()->getAllExits().size(); i++){
+                                if (player->getLocation()->getAllExits()[i]->needsTool() == true){
+                                    cout << "\nEstos cuartos pueden ser abiertos con tu Herramienta: ";
+                                    cout << endl << player->getLocation()->getAllExits()[i]->getName();
+                                    cout << "\nSelecciona el cuarto que quieres abrir: ";
+                                    getline(cin,frase);
+
+                                    if(frase == player->getLocation()->getExit(frase)->getName()){
+                                        player->getLocation()->getExit(frase)->setTool(false);
+                                    }
+                                }
+                                else{
+                                    cout << "\nNo hay ningún cuarto cerca que necesite una Herramienta.";
+                                }
+                        }
+                    }
+                    else if(toUse->getType() == "Objetivo"){
+                        cout << "\nFelicidades, has conseguido robar los papeles.";
+                        break;
+                    } else {
+                        cout << "No hay ningún objeto que coincida con ese nombre en tu inventario" << endl;
+                    }
+                    
+                } if (com1 == "dejar"){
+                    player->dropItem(com2);
+
+                }
+                
+            
             }
         }
-        else if (com1 == "camina"){
-            cout << "\nSelecciona hacia donde quieres moverte: \n";
-            player->getLocation()->getAllExits(); cout << endl;
-            cin >> com2;
-            if(com2 == player->getLocation()->getExit(com2)->getName()){
-                player->move(com2);
-            }
+        else if (com1 == "moverse"){
+            if (com2 == ""){
+                cout << "¿A dónde te vas a mover?\n";
+                getline(cin,com2);
+            }    
+            player->move(com2);
+            cout << *(player->getLocation());
+            
         }
-        else if (com1 == "toma"){
-            player->addItem(com2);
+        else if (com1 == "tomar"){
+            if (com2 == ""){
+                cout << "¿Qué quieres tomar?\n";
+                getline(cin,com2);
+            }
+            try{
+                player->addItem(com2);
+                cout << "Item añadido exitosamente" << endl;
+            } catch (const char* msg){
+                cerr << msg;
+            }
+            
+            
+        } else{
+            cout << "\nComando Inválido\n";
         }
     }
 
-    
+    if (player->isDetected()){
+        cout << "¡Te han detectado!\n\n\t\t\tFIN DEL JUEGO";
+    }
 
     return 0;
 }

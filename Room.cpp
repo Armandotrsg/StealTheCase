@@ -23,7 +23,7 @@ void Room::setName(string name){
 }
 
 string Room::getDescription(){
-    string fullDescription = this->name;
+    string fullDescription = "\nTe encuentras en: " +this->name;
     fullDescription = fullDescription + ":\n" + this->description;
     fullDescription = fullDescription + "\nPersonajes en el cuarto: ";
     for (int i = 0; i < this->people.size(); i++){
@@ -36,6 +36,10 @@ string Room::getDescription(){
         }
     }
     fullDescription += "\n";
+    fullDescription += "Posibles salidas del cuarto:";
+    for (int i = 0; i < this->exits.size(); i++){
+        fullDescription += "\n- " + exits[i]->getName();
+    }
     return fullDescription;
 }
 
@@ -177,6 +181,7 @@ bool Room::removeCharacter(string neutralized){
         
     } else {
         cout << "No hay ningún personaje con este nombre en el cuarto\n";
+        
     }
     
     return detected;
@@ -198,4 +203,9 @@ bool Room::setKey(bool key){
 
 bool Room::setTool(bool tool){
     this->tool = tool;
+}
+
+ostream& operator << (ostream& os, Room& room){
+    os << room.getDescription();
+    return os;
 }

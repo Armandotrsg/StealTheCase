@@ -54,6 +54,7 @@ class Room{
         bool setKey(bool);
         bool setTool(bool);
         
+        friend ostream& operator << (ostream&,Room&);
 
 };
 

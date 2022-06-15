@@ -65,12 +65,12 @@ void Hitman::addItem(string newItemname){
     
     if (newItem != nullptr){
         int maxInventory = 5;
-        if (hasBackPack()){
+        if (this->backPack){
             maxInventory = 10;
         }
         if (newItem->getSpace() <= (maxInventory - getInventorySpaceUsed())){
             if (newItem->getType() == "Mochila"){
-                bool idk = hasBackPack();
+                this->backPack = true;
                 this->location->removeItem(newItem);
             } else if (newItem->getType() == "Ropa"){
                 if (Clothes* newClothes = dynamic_cast<Clothes*>(newItem)){
@@ -85,7 +85,8 @@ void Hitman::addItem(string newItemname){
                 this->location->removeItem(newItem);
             }
         } else {
-            cout << "No tienes más espacio en el inventario\n";
+            //cout << "No tienes más espacio en el inventario\n";
+            throw "No tienes más espacio en el inventario\n";
         }
     }
 }
@@ -149,7 +150,7 @@ void Hitman::viewInventory(){
         }
     }
     cout << getDisguise()->getDescription() << endl;
-    cout << "Ingresa la palabra 'usar' o 'dejar' seguido del nombre del objeto de acuerdo a lo que quieras hacer: " << endl;
+    cout << "Ingresa la palabra 'usar' o 'dejar' seguido del nombre del objeto de acuerdo a lo que quieras hacer.\nSi quieres salir del inventario escribe 'salir': " << endl;
 
 }
 
@@ -165,13 +166,20 @@ void Hitman::dropItem(string item){
             this->location->setItem(dropObject);
             int index = getItemIndex(dropObject);
             this->inventory.erase(this->inventory.begin() + index);
-            message = "Item eliminado exitosamente";
+            message = "Item dropeado exitosamente";
+        } else{
+            message = "No puedes dropear ropa";
         }
         
     } else{
         message = "El item ingresado no coincide con ningún item de tu inventario";
     }
     cout << message << endl;
+}
+
+void Hitman::removeItem(Item* usedItem){
+    int removed = getItemIndex(usedItem);
+    this->inventory.erase(this->inventory.begin()+removed);
 }
 
 

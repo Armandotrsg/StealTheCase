@@ -22,6 +22,7 @@ class Hitman: public Character{
         Item* getItemType(string);
 
         void addItem(string);
+        void removeItem(Item*);
         void addSpecificItem(Item*);
         bool hasBackPack();
         bool move(string); //Devuelve si sí puede caminar y se mueve
@@ -38,6 +39,8 @@ class Hitman: public Character{
         void distractNpc(string);
 
         bool isDetected();
+
+
 };
 
 #endif

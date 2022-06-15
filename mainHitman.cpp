@@ -172,6 +172,7 @@ int main(){
     //string name;
     //cin >> name;
     Hitman* player = new Hitman("name",hitmanClothes,estacionamiento);
+<<<<<<< HEAD
     string com1, com2, com3;
     while(!player->isDetected()){
         cout << "\nIngresa un comando: ";
@@ -272,6 +273,7 @@ int main(){
             player->addItem(com2);
         }
     }
+
     
 
     return 0;

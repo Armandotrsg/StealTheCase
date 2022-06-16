@@ -13,17 +13,17 @@ class Hitman: public Character{
         bool detected;
         bool backPack;
         Room* location;
+        
     
     public:
         Hitman();
-        Hitman(string,Clothes*,Room*); //Sin items al inicio
+        Hitman(string,Clothes*,Room*); //Sin items al inicio, se usa el set para ellos
         int getItemIndex(Item*);
         Item* seekItem(string);
         Item* getItemType(string);
 
         void addItem(string);
         void removeItem(Item*);
-        void addSpecificItem(Item*);
         bool hasBackPack();
         bool move(string); //Devuelve si sí puede caminar y se mueve
         void viewInventory();
@@ -33,7 +33,6 @@ class Hitman: public Character{
         Room* getLocation();
         void setLocation(Room*);
         int getInventorySpaceUsed(); //Suma el peso de todos los items
-        void changeClothes(Clothes*);
 
         void neutralizeNpc(string);
         void distractNpc(string);

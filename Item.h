@@ -8,10 +8,10 @@ using namespace std;
 
 class Item{
     private:
-        string type;
+        string type; //Tipo de item: arma, distractor, inutil u objetivo
         string name;
-        string description;
-        int space;
+        string description; 
+        int space; //Espacio que ocupa en el inventario
 
     public:
         Item();

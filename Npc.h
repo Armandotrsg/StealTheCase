@@ -4,11 +4,11 @@
 #include "Character.h"
 
 
-class Npc: public Character{
+class Npc: public Character{ //Clase derivada de Character
     private:
-        Item* dropItem;
-        bool distracted;
-        bool neutralized;
+        Item* dropItem; //Estos personajes tienen un solo item
+        bool distracted; //Pueden distraerse
+        
 
     public:
         Npc();
@@ -16,11 +16,11 @@ class Npc: public Character{
 
         Item* getDropItem();
         bool getDistracted();
-        bool getNeutralized();
+        
 
         void setDropItem(Item*);
         void setDistracted(bool);
-        void setNeutralized(bool);
+        
 
 
 

@@ -2,13 +2,11 @@
 
 Npc::Npc(){
     this->distracted = false;
-    this->neutralized = false;
 }
 
-Npc::Npc(string nombre, Clothes* ropa, Item* objeto): Character(nombre, ropa){
+Npc::Npc(string nombre, Clothes* ropa, Item* objeto): Character(nombre, ropa){ //Los npc también tienen ropa a dropear
     this->dropItem = objeto;
     this->distracted = false;
-    this->neutralized = false;
 }
 
 Item* Npc::getDropItem(){
@@ -16,12 +14,9 @@ Item* Npc::getDropItem(){
 }
 
 bool Npc::getDistracted(){
-    return this->distracted;
+    return this->distracted; //Devuelve si el npc está distraído
 }
 
-bool Npc::getNeutralized(){
-    return this->neutralized;
-}
 
 void Npc::setDropItem(Item* objeto){
     this->dropItem = objeto;
@@ -29,8 +24,4 @@ void Npc::setDropItem(Item* objeto){
 
 void Npc::setDistracted(bool distracted){
     this->distracted = distracted;
-}
-
-void Npc::setNeutralized(bool neutralized){
-    this->neutralized = neutralized;
 }

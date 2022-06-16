@@ -18,6 +18,6 @@ void Clothes::setJob(string job){
 }
 
 string Clothes::getDescription(){
-    return Item::getDescription() + "\nRopa de " + getJob() + "\n";
+    return Item::getDescription() + "\nRopa de " + getJob() + "\n"; //polimorfismo de la clase base item
 }
 

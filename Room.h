@@ -13,12 +13,12 @@ class Room{
     private:
         string name;
         string description;
-        vector<Clothes*> accessClothes;
-        vector<Item*> items;
-        vector<Npc*> people;
-        bool key;
-        bool tool;
-        vector<Room*> exits;
+        vector<Clothes*> accessClothes; //Ropa con la que puedes acceder al cuarto sin ser detectado
+        vector<Item*> items; //Items en el cuarto
+        vector<Npc*> people; //Npc's en el cuarto
+        bool key; //Si el cuarto necesita llave
+        bool tool; //Si el cuarto necesita herramienta
+        vector<Room*> exits; //Salidas del cuarto
 
     public:
         Room();
@@ -29,11 +29,11 @@ class Room{
         void addAccessClothes(Clothes*);
         void addNpc(Npc*);
         
-        int getNumberOfCharacters();
+        int getNumberOfCharacters(); //Número de personajes en el cuarto
         vector<Npc*> getAllCharacters();
         Npc* getNpc(string);
-        int getNpcIndex(Npc*);
-        bool removeCharacter(string);
+        int getNpcIndex(Npc*); //Regresa el índice en el vector del Npc
+        bool removeCharacter(string); //Quita el personaje ingresado or nombre del cuarto
         vector<Npc*> getOtherCharactersInRoom(Npc*);
 
         Room* getExit(string);
@@ -41,7 +41,7 @@ class Room{
         void addExit(Room*);
 
         
-        Item* getItem(string); //solo para inicializar
+        Item* getItem(string); 
         void setItem(Item*);
         void removeItem(Item*);
 
@@ -51,8 +51,8 @@ class Room{
         bool needsKey();
         bool needsTool();
 
-        bool setKey(bool);
-        bool setTool(bool);
+        void setKey(bool);
+        void setTool(bool);
         
         friend ostream& operator << (ostream&,Room&);
 

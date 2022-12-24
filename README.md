@@ -1,21 +1,25 @@
 # Steal The Case
 
-PROYECTO ELABORADO POR:
-ARMANDO TERRAZAS GÓMEZ
-FERNANDO GÓMEZ MARTÍNEZ
+## Description
+You are an agent of a secret organization who has been sent to a luxurious business meeting at a mansion. Your mission is to infiltrate the party, steal a briefcase containing information about the chemical formula for a biological weapon that a nefarious corporation plans to use, and escape undetected, no matter the cost. You will navigate through different scenarios within the mansion and find objects with various functions, such as weapons (to neutralize enemies), distractions (to distract enemies), outfits, tools, and keys. These outfits are particularly important because certain locations within the mansion can only be accessed by certain types of people (chefs, security personnel, police, etc.), and you will need to obtain the necessary outfits to infiltrate these areas. Outfits are obtained by neutralizing enemies who are wearing them, so you will need to be selective when neutralizing enemies as your weapons are limited and will be depleted with use. You must do so silently, as if there are multiple enemies in the room, they will discover you. This is where the distraction objects come in, as they help to distract certain enemies so you can neutralize others without being detected. By default, you have a defined space to carry 5 items, and each of these items occupies a defined space (outfits do not take up space, as you can only wear the one you are currently wearing, not store them). However, within the mansion there is a backpack that, if found, will allow you to carry twice the number of items to use while trying to complete the challenge. However, if your backpack is full, and you want to pick up an important item, you will have to first drop an item from your inventory (this will not be lost, it will simply remain in the room). To use any item in the inventory, you must first open the inventory and then use the item. To win, once inside the vault, you must "use the papers" to complete the game.
 
-## HISTORIA
+## Contributors
+- [@Armandotrsg](https://github.com/Armandotrsg)
+- [@Fergomar](https://github.com/Fergomar1320)
 
-Eres un agente de una organización secreta, el cual fue enviado a una lujosa reunión de empresarios en una mansión. Fuiste enviado con el propósito de robar un maletín con información acerca de la fórmula química de un arma biológica que piensa utilizar una corporación malvada. Tu misión es infiltrarte dentro de la fiesta, robar el maletín, y huir sin ser detectado, cueste lo que cueste…
+## Installation
+Install StealTheCase game by cloning this repository. You must have C++11 and g++ or clang compiler to play it
 
-## ¿Cómo lo hago?
-Dentro de la mansión encontrarás diferentes escenarios a través de los cuales podrás desplazar a tu agente. En estos escenarios encontrarás objetos con diferentes funcionalidades: como armas (las cuales sirven para neutralizar enemigos), distractores (sirven para distraer enemigos), atuendos, herramientas y llaves..
+```bash
+  git clone https://github.com/Armandotrsg/StealTheCase
+  cd StealTheCase
+  g++ -std=c++11 *.cpp -o ./main.exe
+  ./main.exe
+```
 
-Estos últimos son muy importantes ya que existen ciertas localizaciones en las que solamente podrán entrar cierto tipo de personas (Chefs, personal de seguridad, policías, etc.) por lo que deberás conseguir los atuendos necesarios para poder infiltrarte a este tipo de zonas. 
-
-Los atuendos son objetos que se consiguen neutralizando a aquellos enemigos que los porten, por lo que deberás ser muy selectivo a la hora de neutralizar enemigos, ya que tus armas son limitadas y se gastan al usarse. Deberás hacerlo de manera silenciosa, ya que si hay más de un enemigo en el cuarto, te habrán descubierto. Es ahí donde entran los objetos de tipo distracción, pues estos ayudan a que se despisten ciertos enemigos para que puedas neutralizar a otros sin ser detectado
-
-Por default cuentas con un espacio definido para poder cargar 5 objetos, y cada uno de estos abarcan un espacio definido (los atuendos no ocupan espacio, pues solamente puedes usar el que estás portando, no puedes guardarlos). Sin embargo, dentro de la mansión hay una mochila que, si la encuentras, te permitirá cargar el doble de objetos para que los uses mientras tratas de cumplir con el desafío. Sin embargo, si tu mochila está llena, y quieres recoger un objeto importante, deberás soltar primero un objeto dentro de tu inventario (este no se perderá, solamente quedará en la habitación).
-
-Para usar cualquier objeto del inventario, hay que abrir primero el inventario y luego usar el objeto. Para ganar, una vez dentro de la bóveda, tienes que "usar los papeles"
-para superar el juego. 
+## Features
+- Infiltration of a luxurious business party at a mansion
+- Navigation through different scenarios within the mansion
+- Use of objects with various functions, such as weapons, distractions, outfits, tools, and keys
+- Neutralization of enemies to obtain outfits and access certain areas of the mansion
+- Use of a backpack to increase the

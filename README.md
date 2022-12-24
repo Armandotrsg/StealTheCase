@@ -11,7 +11,7 @@ You are an agent of a secret organization who has been sent to a luxurious busin
 Install StealTheCase game by cloning this repository. You must have C++11 and g++ or clang compiler to play it
 
 ```bash
-  git clone https://github.com/Armandotrsg/StealTheCase
+  git clone https://github.com/Armandotrsg/StealTheCase.git
   cd StealTheCase
   g++ -std=c++11 *.cpp -o ./main.exe
   ./main.exe
